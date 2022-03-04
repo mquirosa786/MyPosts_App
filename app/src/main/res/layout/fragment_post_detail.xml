@@ -1,0 +1,317 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    >
+
+    <data>
+        <variable
+            name="userData"
+            type="com.softwaremq.myzemogaapp.models.UserData" />
+        <variable
+            name="postData"
+            type="com.softwaremq.myzemogaapp.models.PostData" />
+        <variable
+            name="count"
+            type="Integer" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/topLayout"
+            android:layout_width="match_parent"
+            android:background="@color/colorPrimary"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toTopOf="parent"
+            android:orientation="horizontal"
+            android:padding="15dp"
+
+            >
+
+            <ImageView
+                android:id="@+id/ivBack"
+                android:clickable="true"
+                android:focusable="true"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:src="@drawable/circled_arrow_right"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                android:rotation="180"
+                app:tint="@color/white" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintStart_toEndOf="@+id/ivBack"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                android:text="Post Details"
+                android:textStyle="bold"
+                android:layout_marginStart="15dp"
+                android:textSize="12sp"
+                android:textColor="@color/white"
+                android:layout_gravity="center_vertical"
+                />
+
+            <ImageView
+                android:id="@+id/ivFav"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:clickable="true"
+                android:focusable="true"
+                android:src="@{postData.favorite ? @drawable/star_yellow: @drawable/empty_star}"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                />
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <LinearLayout
+            android:id="@+id/postDetails"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@+id/topLayout"
+            android:orientation="vertical"
+            >
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/card_home"
+                android:layout_marginBottom="5dp"
+                android:id="@+id/clItem"
+                android:layout_margin="10dp"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/tvTitle"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:text="@{postData.title}"
+                    tools:text="ea molestias quasi exercitationem repellat qui ipsa sit aut"
+                    android:textSize="11sp"
+                    android:paddingStart="10dp"
+                    android:textStyle="bold"
+                    android:gravity="center_horizontal"
+                    android:paddingTop="15dp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    android:paddingEnd="10dp"
+                    />
+
+                <View
+                    android:id="@+id/divider"
+                    android:layout_width="0dp"
+                    android:layout_height="1dp"
+                    android:background="@color/colorPrimary"
+                    app:layout_constraintTop_toBottomOf="@+id/tvTitle"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginEnd="15dp"
+                    />
+
+                <TextView
+                    android:id="@+id/tvBody"
+                    android:layout_width="0dp"
+                    android:text="@{postData.body}"
+                    android:layout_height="wrap_content"
+                    tools:text="et iusto sed quo iure\nvoluptatem occaecati omnis eligendi aut ad\nvoluptatem doloribus vel accusantium quis pariatur\nmolestiae porro eius odio et labore et velit au"
+                    android:textSize="10sp"
+                    android:paddingTop="10dp"
+                    android:paddingStart="15dp"
+                    android:paddingEnd="15dp"
+                    android:paddingBottom="10dp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/divider"
+                    />
+
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/card_home"
+                android:layout_marginBottom="5dp"
+                android:id="@+id/clUser"
+                android:layout_margin="10dp"
+                android:paddingBottom="15dp"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/tvName"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    tools:text="Posted by Mario Quiros"
+                    android:text='@{"Posted by " + userData.email}'
+                    android:textSize="11sp"
+                    android:paddingStart="10dp"
+                    android:textStyle="bold"
+                    android:gravity="center_horizontal"
+                    android:paddingTop="15dp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    android:paddingEnd="10dp"
+                    />
+
+                <View
+                    android:id="@+id/dividerName"
+                    android:layout_width="0dp"
+                    android:layout_height="1dp"
+                    android:background="@color/colorPrimary"
+                    app:layout_constraintTop_toBottomOf="@+id/tvName"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginEnd="15dp"
+                    />
+
+                <TextView
+                    android:id="@+id/tvUserName"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/username"
+                    android:textStyle="bold"
+                    android:textSize="10sp"
+                    android:paddingTop="10dp"
+                    android:paddingStart="15dp"
+                    android:paddingEnd="5dp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/dividerName"
+                    />
+
+                <TextView
+                    android:id="@+id/tvUserNameData"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    tools:text="mquirosa786"
+                    android:textSize="10sp"
+                    android:text="@{userData.username}"
+                    android:paddingTop="10dp"
+                    app:layout_constraintStart_toEndOf="@+id/tvUserName"
+                    app:layout_constraintTop_toBottomOf="@+id/dividerName"
+                    />
+
+                <TextView
+                    android:id="@+id/tvEmail"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/email"
+                    android:textStyle="bold"
+                    android:textSize="10sp"
+                    android:paddingTop="10dp"
+                    android:paddingStart="15dp"
+                    android:paddingEnd="5dp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/tvUserName"
+                    />
+
+                <TextView
+                    android:id="@+id/tvEmailData"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    tools:text="marioquiros96@hotmail.com"
+                    android:text="@{userData.email}"
+                    android:textSize="10sp"
+                    android:paddingTop="10dp"
+                    app:layout_constraintStart_toEndOf="@+id/tvEmail"
+                    app:layout_constraintTop_toBottomOf="@+id/tvUserName"
+                    />
+
+                <TextView
+                    android:id="@+id/tvPhone"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/phone"
+                    android:textStyle="bold"
+                    android:textSize="10sp"
+                    android:paddingTop="10dp"
+                    android:paddingStart="15dp"
+                    android:paddingEnd="5dp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/tvEmail"
+                    />
+
+                <TextView
+                    android:id="@+id/tvPhoneData"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    tools:text="89692110"
+                    android:textSize="10sp"
+                    android:text="@{userData.phone}"
+                    android:paddingTop="10dp"
+                    app:layout_constraintStart_toEndOf="@+id/tvPhone"
+                    app:layout_constraintTop_toBottomOf="@+id/tvEmailData"
+                    />
+
+                <TextView
+                    android:id="@+id/tvWebsite"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/website"
+                    android:textStyle="bold"
+                    android:textSize="10sp"
+                    android:paddingTop="10dp"
+                    android:paddingStart="15dp"
+                    android:paddingEnd="5dp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/tvPhone"
+                    />
+
+                <TextView
+                    android:id="@+id/tvWebsiteData"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    tools:text="marioquiros.com"
+                    android:textSize="10sp"
+                    android:text="@{userData.website}"
+                    android:paddingTop="10dp"
+                    app:layout_constraintStart_toEndOf="@+id/tvWebsite"
+                    app:layout_constraintTop_toBottomOf="@+id/tvPhoneData"
+                    />
+
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/tvComments"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text='@{"Comments ("+count+")"}'
+            android:textSize="12sp"
+            android:textStyle="bold"
+            android:layout_marginTop="15dp"
+            android:layout_marginStart="15dp"
+            app:layout_constraintTop_toBottomOf="@+id/postDetails"
+            />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rvComments"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            app:layout_constraintTop_toBottomOf="@+id/tvComments"
+            app:layout_constraintBottom_toBottomOf="parent"
+            android:orientation="vertical"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            tools:listitem="@layout/comment_item"
+            tools:itemCount="6"
+            />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

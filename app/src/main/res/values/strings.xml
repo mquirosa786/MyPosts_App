@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">My Zemoga App</string>
+    <string name="loading_inner_box">Loading...</string>
+    <string name="remove_all">Remove All</string>
+    <string name="favorites">Favorites</string>
+    <string name="username">Username:</string>
+    <string name="email">Email:</string>
+    <string name="phone">Phone:</string>
+    <string name="website">Website:</string>
+</resources>
