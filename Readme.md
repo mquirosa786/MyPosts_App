@@ -1,0 +1,10 @@
+- The app uses MVVM architecture. 
+- I use Retrofit to handle the HTTP requests over to the https://jsonplaceholder.typicode.com/ api. 
+- I created a ResultWrapper class to handle the different response types that I can get from either the api or the async thread. 
+- I use coroutines for thread handling, with a coroutineExceptionHandler as a last resource handler. 
+- I have base classes to have shared methods in for better usability. 
+- I used databinding to connect the observable data from the viewmodel over to the views. 
+- I also used Recycler views with their adapters to display boths lists required on the exercises. 
+- I am using Realm database to save the favorites as that is not included on the API and I am using REALM also to cache posts, users and comments; the cache will start working only if you do not have internet access at the moment, otherwise, it would go straight to the API.  
+- I am using a 3rd party API (swipe refresh layout) to handle the refresh of the posts, all you gotta do is drag down on the main fragment, and your posts will be updated directly from the API.
+- I am also using ItemTouchHelper to handle the removals of the posts. If you swipe either left or right, the post will sent the DELETE request to the API, will also get deleted from the CACHE, and an animation will delete the same from the displayed list.
